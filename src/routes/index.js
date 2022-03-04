@@ -4,6 +4,9 @@ const {db} = require('../firebase');
 
 const router = Router();
 
+
+////rutas que nos permite listar los contactos de nuestra base de datos////
+
 router.get('/contacts', async (req, res) => {
 
     
@@ -29,17 +32,63 @@ router.get('/contacts', async (req, res) => {
     res.send('HELLO')
 });
 
-router.post('/new-contact',  async (req, res) => {
 
-    const {firstname, lastname, email, phone } = req.body
-    await db.collection('contacts').add({
-        firstname, 
-        lastname,
-        email,
-        phone
+
+///////ruta que nos permite añadir un nuevo contacto //////
+
+    router.post('/new-contact',  async (req, res) => {
+
+        const {firstname, lastname, email, phone } = req.body
+        await db.collection('contacts').add({
+            firstname, 
+            lastname,
+            email,
+            phone
+        })
+
+        res.send('new contact create')
     })
 
-    res.send('new contact create')
-})
 
-module.exports = router;
+///////ruta que nos permite obtener los datos mediante un id //////
+
+    router.get('/edit-contact/:id', async (req, res) => {
+
+        
+        const doc = await db.collection('contacts').doc(req.params.id).get()
+
+        console.log({
+            id: doc.id,
+            ...doc.data()
+        });
+
+        res.send('edit contact')
+
+    } )
+
+
+///////ruta que nos permite eliminar un contacto de la lista///////
+
+    router.get('/delet-contact/:id', async (req, res) => {
+
+        await db.collection('contacts').doc(req.params.id).delete()
+
+        res.send('contact deleted')
+    })
+
+
+    //
+    //
+
+
+    router.post('/update-contact/:id', async (req, res) => {    
+
+        await db.collection('contacts').doc(req.params.id).update(req.body)
+
+
+        res.send('contact update')
+
+    })
+
+
+    module.exports = router;
