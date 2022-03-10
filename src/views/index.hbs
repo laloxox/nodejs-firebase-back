@@ -1,0 +1,45 @@
+<h1>CONTACTS</h1>
+
+<ul>
+
+    {{#each contacts}}
+    <li>
+        <h3>{{firstname}} {{lastname}}</h3>
+        <p>{{email}}</p>
+        <p>{{phone}}</p>
+
+    <a href="/delete-contact/{{id}}">Delete</a>
+    <a href="/edit-contact/{{id}}">Edit Contact</a>
+
+    </li>
+    {{/each}}
+
+
+</ul>
+
+<form action="/new-contact" method="POST">
+
+
+        <div>     
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname"  placeholder="First Name" id="firstname">
+        </div>
+
+        <div>
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" placeholder="Last Name" id="lastname">
+        </div>
+
+        <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" placeholder="Email" id="email">
+        </div>
+
+        <div>
+                <label for="phone">Phone:</label>
+                <input type="text" name="phone" placeholder="Phone" id="phone">
+        </div>
+                <button>Submit</button>
+    
+
+</form>

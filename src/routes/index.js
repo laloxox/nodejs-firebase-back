@@ -7,7 +7,7 @@ const router = Router();
 
 ////rutas que nos permite listar los contactos de nuestra base de datos////
 
-router.get('/contacts', async (req, res) => {
+router.get('/', async (req, res) => {
 
     
     const querySnapshot = await db.collection('contacts').get()
@@ -27,9 +27,9 @@ router.get('/contacts', async (req, res) => {
 
     }))
 
-    console.log(contacts);
+    
 
-    res.send('HELLO')
+    res.render('index', {contacts})
 });
 
 
@@ -46,7 +46,7 @@ router.get('/contacts', async (req, res) => {
             phone
         })
 
-        res.send('new contact create')
+        res.redirect('/')
     })
 
 
@@ -69,11 +69,11 @@ router.get('/contacts', async (req, res) => {
 
 ///////ruta que nos permite eliminar un contacto de la lista///////
 
-    router.get('/delet-contact/:id', async (req, res) => {
+    router.get('/delete-contact/:id', async (req, res) => {
 
         await db.collection('contacts').doc(req.params.id).delete()
 
-        res.send('contact deleted')
+        res.redirect('/')
     })
 
 
