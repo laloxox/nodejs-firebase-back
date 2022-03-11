@@ -57,14 +57,9 @@ router.get('/', async (req, res) => {
         
         const doc = await db.collection('contacts').doc(req.params.id).get()
 
-        console.log({
-            id: doc.id,
-            ...doc.data()
-        });
+        res.render('index', {contact: {id: doc.id, ...doc.data()} });
 
-        res.send('edit contact')
-
-    } )
+    } );
 
 
 ///////ruta que nos permite eliminar un contacto de la lista///////
@@ -82,13 +77,13 @@ router.get('/', async (req, res) => {
 
 
     router.post('/update-contact/:id', async (req, res) => {    
-
+        const {id} = req.params;
         await db.collection('contacts').doc(req.params.id).update(req.body)
 
 
-        res.send('contact update')
+        res.redirect('/');
 
-    })
+    });
 
 
     module.exports = router;
