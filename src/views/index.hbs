@@ -1,40 +1,39 @@
         <div class="col-md-6 offset-md-3">
         
         <div class="card bg-dark text-light">
-        <div class="card-header">
-                <h1 class="h2 text-white">
-                        Contacts List
-                </h1>
-        </div>
+                <div class="card-header">
+                        <h1 class="h2 text-white">
+                                Contacts List
+                        </h1>
+                </div>
+
         <div class="card-body">
                 
                 {{#if contacts}}
-                
+                        <ul class="list-group">
+                                {{#each contacts}}
+                                <li class="list-group-item flex justify-content-between aling-items-center">
+                                        <h3>{{firstname}} {{lastname}}</h3>
+                                        <p>{{email}}</p>
+                                        <p>{{phone}}</p>
 
-                <ul class="list-group">
-                        {{#each contacts}}
-                        <li class="list-group-item flex justify-content-between aling-items-center">
-                                <h3>{{firstname}} {{lastname}}</h3>
-                                <p>{{email}}</p>
-                                <p>{{phone}}</p>
+                                <a class="btn btn-danger" href="/delete-contact/{{id}}">Delete</a>
+                                <a class="btn btn-outline-secondary" href="/edit-contact/{{id}}">Edit</a>
 
-                        <a class="btn btn-danger" href="/delete-contact/{{id}}">Delete</a>
-                        <a class="btn btn-outline-secondary" href="/edit-contact/{{id}}">Edit Contact</a>
-
-                        </li>
-                        {{/each}}
+                                </li>
+                                {{/each}}
 
 
-        </ul>
-        {{else}}
-        <p>No contacts yet</p>
+                        </ul>
+                {{else}}
+                        <p>No contacts yet</p>
                 {{/if}}
         </div>
 
 <div class="card-foter">
         <form action="{{#unless contact.id}}/new-contact{{else}}/update-contact/{{contact.id}}{{/unless}}" method="POST">
 
-                <div class="row">
+                <div class="form-group row mt-4 ">
                                 
                         <div class="col">     
                                 <label for="firstname">First Name:</label>
@@ -44,7 +43,7 @@
                                 placeholder="First Name" 
                                 id="firstname" 
                                 value="{{contact.firstname}}"
-                                class="form-control mb-2 ">
+                                class="form-control mb-2 "/>
                         </div>
 
                         <div class="col">
@@ -55,7 +54,7 @@
                                 placeholder="Last Name" 
                                 id="lastname" 
                                 value="{{contact.lastname}}"
-                                class="form-control mb-2">
+                                class="form-control mb-2"/>
                         </div>
                 </div>
 
@@ -68,7 +67,7 @@
                                 placeholder="Email" 
                                 id="email" 
                                 value="{{contact.email}}"
-                                class="form-control mb-2">
+                                class="form-control mb-2"/>
                         </div>
 
                         <div class="col">
@@ -79,27 +78,26 @@
                                 placeholder="Phone" 
                                 id="phone" 
                                 value="{{contact.phone}}"
-                                class="form-control mb-2">
+                                class="form-control mb-2"/>
                         </div>
                 </div>
                 
         
         {{#if contact.id}}
 
-        <button type="button" class="btn btn-outline-primary">Update</button>
+        <button  class="btn btn-outline-primary btn-block">Update</button>
         <a href="/" class="btn btn-outline-secondary">Cancel</a>
 
         {{else}}
 
-        <button type="button" class="btn btn-outline-primary">Add</button>
+        <button class="btn btn-outline-primary btn-block">Add</button>
 
         {{/if}}
 
         </form>
 
-</div>
-
         </div>
 
+</div>
 
-        </div> 
+</div> 
