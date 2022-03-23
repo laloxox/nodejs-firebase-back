@@ -1,3 +1,5 @@
+//inicializamos y conectamos la base de datos de firestore
+
 require('dotenv').config()
 
 const {initializeApp, applicationDefault} = require('firebase-admin/app')
