@@ -5,5 +5,8 @@ This project is a programming practice.
 
 ## Requirements
 
--`Handlebars`
--`dot-env`
+`express`
+`Handlebars`
+`dot-env`
+`nodemon`
+
