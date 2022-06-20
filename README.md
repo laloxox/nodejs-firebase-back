@@ -5,4 +5,5 @@ This project is a programming practice.
 
 ## Requirements
 
-`Handlebars`
+-`Handlebars`
+-`dot-env`
